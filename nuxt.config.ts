@@ -1,13 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
     nitro: {
         prerender: {
-            // 1. Указываем Nuxt'у, какие языковые версии нужно сгенерировать
             routes: ['/rus', '/eng', 'pl'],
 
-            // 2. Игнорируем ошибку на корне, если редирект не сработает при билде
-            // (хотя с файлом из Шага 1 это может и не понадобиться, но для надежности лучше оставить false или убрать)
             failOnError: false,
         }
     },
