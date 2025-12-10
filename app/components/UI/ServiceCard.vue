@@ -49,18 +49,16 @@ p{
 img {
   height: 15rem;
   width: fit-content;
-  filter: var(--color-text-light);
+  transition: 0.5s;
 }
 .index_1{
   background-color: var(--color-accent-primary);
 }
 .index_2{
   background-color: var(--color-accent-secondary);
-
 }
 .index_3{
   background-color: var(--color-accent-thirdly);
-
 }
 
 @media screen and (max-width: 1200px) {
@@ -75,10 +73,24 @@ img {
 }
 @media screen and (max-width: 760px) {
   img {
-    height: 7rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: 0;
+    transform: rotate(45deg) scale(1.3);
+    opacity: 0.2;
+
   }
   .card {
     gap: 2rem;
+    transition-delay: 100ms;
+    position: relative;
+    overflow: hidden;
+  }
+  .card>p, .card>div{
+    position:  relative;
   }
 }
 @media screen and (max-width: 500px) {

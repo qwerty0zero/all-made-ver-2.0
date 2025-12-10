@@ -152,6 +152,17 @@ h2{
     font-size: 3.2rem;
   }
 }
+
+@media screen and (max-width: 760px) {
+  .textContent > .split{
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .textContent > .split p {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .textContent{
     gap: 2rem;

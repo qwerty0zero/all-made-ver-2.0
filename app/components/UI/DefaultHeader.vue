@@ -178,6 +178,7 @@ nav.Active .desktop-only li:last-child a{
   nav {
     position: fixed;
     right: 4rem;
+    padding: 0 ;
   }
   a{
     font-size: 2rem;
@@ -289,6 +290,22 @@ nav.Active .desktop-only li:last-child a{
   header { padding: 1rem 4rem 0 0; }
   .curve.reverse { inset: auto auto -2rem 1rem; }
   nav[data-v-1bacb6a8] {
+    right: 2rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .title_holder{
+    gap: 1rem;
+  }
+  h1{
+    font-size: 2.5rem;
+  }
+  img{
+    height: 4rem;
+  }
+  nav{
+    top: 2rem;
     right: 2rem;
   }
 }

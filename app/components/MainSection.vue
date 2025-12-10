@@ -58,6 +58,7 @@ section {
   height: 100dvh;
   position: relative;
   border: 2rem solid var(--color-background-light);
+  transition: 0.3s;
   padding: 10rem 4rem;
   border-radius: 4rem;
   display: flex;
