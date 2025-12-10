@@ -1,0 +1,35 @@
+:root {
+    --font-main: 'Montserrat', sans-serif;
+
+    --color-text-dark: #303030;
+    --color-text-light: #EFE3D3;
+    --color-text-accent: #AE9675;
+
+    --color-background-dark: #303030;
+    --color-background-light: #EFE3D3;
+    --color-background-accent: #AE9675;
+
+    --color-accent-primary: #AE9675;
+    --color-accent-secondary: #72624C;
+    --color-accent-thirdly: #584C3D;
+
+    --transition: 0.25s ease;
+}
+
+::selection {
+    color: var(--color-text-accent);
+    background: var(--color-background-dark);
+}
+picture ::selection, img ::selection {
+    color: transparent !important;
+    background: transparent !important;
+}
+html{
+    background-color: var(--color-background-light);
+}
+html,body {
+    font-family: var(--font-main), serif;
+    font-size: 10px;
+    user-select: text;
+}
+
