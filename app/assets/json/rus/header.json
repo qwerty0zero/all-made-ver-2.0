@@ -1,0 +1,25 @@
+{
+  "title": "ALL MADE",
+  "buttons": [
+    {
+      "text": "MAIN",
+      "link": "#main"
+    },
+    {
+      "text": "ABOUT US",
+      "link": "#about_us"
+    },
+    {
+      "text": "SERVICE",
+      "link": "#services"
+    },
+    {
+      "text": "OUR WORKS",
+      "link": "#our_works"
+    },
+    {
+      "text": "CONTACTS",
+      "link": "#contact"
+    }
+  ]
+}
