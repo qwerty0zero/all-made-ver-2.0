@@ -15,7 +15,7 @@ const props = defineProps({
 
     <div>
       <div class="mask-container">
-      <h2 ref="headlineRef" v-if="props.data.headline"
+      <h2  v-if="props.data.headline"
           class="one_time_animation cubic_fade"
           v-observe-visibility
       >        {{ props.data.headline }}

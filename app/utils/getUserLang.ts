@@ -1,22 +1,43 @@
+import { useRequestHeaders } from '#app'
+
 export function getUserLang(): string {
-    let lang = 'pl';
+    // 1. Получаем "сырую" строку языка
+    let userRawLang = '';
 
-    if (process.client) {
-        const userLang = navigator?.language?.toLowerCase() || '';
+    if (process.server) {
+        const headers = useRequestHeaders(['accept-language']);
+        // Пробуем получить заголовок в разном регистре на всякий случай
+        userRawLang = headers['accept-language'] || headers['Accept-Language'] || '';
 
-        const cyrillicLangs = [
-            'ru', 'ru-ru', 'uk', 'uk-ua', 'by', 'be', 'be-by',
-            'kk', 'kk-kz', 'uz', 'uz-uz', 'kg', 'ky-kg'
-        ];
-
-        if (userLang.startsWith('pl')) {
-            lang = 'pl';
-        } else if (cyrillicLangs.some(code => userLang.startsWith(code))) {
-            lang = 'rus';
-        } else {
-            lang = 'eng';
-        }
+        // --- ДЕБАГ: Посмотрите это в терминале VS Code ---
+        console.log('🌍 [Server SSR] Заголовок Accept-Language:', userRawLang);
+        // -----------------------------------------------
+    } else {
+        userRawLang = navigator?.language || '';
     }
 
-    return lang;
+    // 2. Очищаем строку
+    // Если строка вида "ru-RU,en;q=0.9", берем только первую часть до запятой -> "ru-RU"
+    // И переводим в нижний регистр
+    const preferredLang = userRawLang.split(',')[0].trim().toLowerCase();
+
+    // 3. Списки языков (упростим коды, так как мы проверяем .startsWith)
+    // Достаточно указать 'ru', это покроет и 'ru', и 'ru-ru', и 'ru-by'
+    const cyrillicLangs = ['ru', 'uk', 'by', 'be', 'kk', 'uz', 'kg', 'ky'];
+
+    // 4. Логика определения
+    if (preferredLang.startsWith('pl')) {
+        return 'pl';
+    }
+
+    // Проверяем, начинается ли preferredLang с любого из кодов кириллицы
+    const isCyrillic = cyrillicLangs.some(code => preferredLang.startsWith(code));
+
+    if (isCyrillic) {
+        return 'rus';
+    }
+
+    // 5. Fallback
+    // Если язык не польский и не кириллица — отдаем английский
+    return 'pl';
 }
