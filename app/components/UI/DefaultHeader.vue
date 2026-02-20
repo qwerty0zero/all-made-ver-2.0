@@ -1,26 +1,16 @@
 <script setup lang="ts">
-import { ref, inject, onMounted, onUnmounted } from 'vue';
+import { ref, inject } from 'vue';
 import { useI18n } from '#imports'
+import { useWindowScroll } from '~/composables/useWindowScroll';
+
 const { $t } = useI18n()
 
 const isMenuOpen = ref(false);
-const isScrolled = ref(false);
+const { isScrolled } = useWindowScroll();
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
-
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50;
-};
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
 </script>
 
 <template>

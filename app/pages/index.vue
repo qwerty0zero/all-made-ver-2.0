@@ -19,6 +19,7 @@ import ProjectCard from "~/components/UI/ProjectCard.vue";
       <SectionText :data="$t('page.about_us')"/>
       <div class="cards">
         <div class="card one_time_animation fade_up" v-for="(el,index) in $t('page.about_us.card')"
+             :key="index"
              v-observe-visibility
              data-offset="30"
              :data-delay="100+(index*200)"
