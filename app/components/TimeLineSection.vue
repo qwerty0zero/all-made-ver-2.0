@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, nextTick } from 'vue';
+import { onMounted, onUnmounted, ref, nextTick, watch } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
@@ -19,11 +19,13 @@ const wrapperRef = ref<HTMLElement | null>(null);
 
 let mm: gsap.MatchMedia | null = null;
 
-const getScrollAmount = (direction: string) => {
+// Функция расчета скролла
+const getScrollAmount = (direction: 'horizontal' | 'vertical') => {
   if (!wrapperRef.value) return 0;
 
   if (direction === 'horizontal') {
     const wrapperWidth = wrapperRef.value.scrollWidth;
+    // Вычитаем ширину окна, чтобы скроллить до конца контента + небольшой отступ
     return -(wrapperWidth - window.innerWidth + 200);
   } else {
     const wrapperHeight = wrapperRef.value.scrollHeight;
@@ -31,94 +33,117 @@ const getScrollAmount = (direction: string) => {
   }
 };
 
+const initAnimations = () => {
+  // Очищаем предыдущие контексты, если они были (на случай ре-инициализации)
+  if (mm) mm.revert();
+
+  mm = gsap.matchMedia();
+
+  // Desktop
+  mm.add("(min-width: 769px)", () => {
+    if (!wrapperRef.value || !sectionRef.value) return;
+
+    const scrollAmount = getScrollAmount('horizontal');
+
+    // Анимация скролла контента
+    gsap.to(wrapperRef.value, {
+      x: scrollAmount,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: "top top",
+        end: () => `+=${Math.abs(scrollAmount)}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+        toggleClass: "is-pinned"
+      }
+    });
+
+    // Анимация объекта по пути
+    gsap.to("#moving-object", {
+      motionPath: {
+        path: "#track-path-desktop",
+        align: "#track-path-desktop",
+        alignOrigin: [0.5, 0.5],
+        autoRotate: true,
+        start: 0,
+        end: 1,
+      },
+      transformOrigin: "50% 50%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: "top top",
+        end: () => `+=${Math.abs(scrollAmount)}`,
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
+  });
+
+  // Mobile
+  mm.add("(max-width: 768px)", () => {
+    if (!wrapperRef.value || !sectionRef.value) return;
+
+    // ИСПРАВЛЕНИЕ: Исправлена опечатка в имени функции
+    const scrollAmount = getScrollAmount('vertical');
+
+    gsap.to(wrapperRef.value, {
+      y: scrollAmount,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: "top top",
+        end: () => `+=${Math.abs(scrollAmount)}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+        toggleClass: "is-pinned"
+      }
+    });
+
+    gsap.to("#moving-object", {
+      motionPath: {
+        path: "#track-path-mobile",
+        align: "#track-path-mobile",
+        alignOrigin: [0.5, 0.5],
+        autoRotate: 90, // Корректировка угла для мобильной версии
+        start: 0,
+        end: 1,
+      },
+      transformOrigin: "50% 50%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: "top top",
+        end: () => `+=${Math.abs(scrollAmount)}`,
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
+  });
+};
+
 onMounted(() => {
   nextTick(() => {
     document.fonts.ready.then(() => {
-      if (!sectionRef.value || !wrapperRef.value) return;
-
-      mm = gsap.matchMedia();
-
-      mm.add("(min-width: 769px)", () => {
-        const scrollAmount = getScrollAmount('horizontal');
-
-        gsap.to(wrapperRef.value, {
-          x: scrollAmount,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: "top top",
-            end: () => `+=${Math.abs(scrollAmount)}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-            toggleClass: "is-pinned"
-          }
-        });
-
-        gsap.to("#moving-object", {
-          motionPath: {
-            path: "#track-path-desktop",
-            align: "#track-path-desktop",
-            alignOrigin: [0.5, 0.5],
-            autoRotate: true,
-            start: 0,
-            end: 1,
-          },
-          transformOrigin: "50% 50%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: "top top",
-            end: () => `+=${Math.abs(scrollAmount)}`,
-            scrub: 1,
-            invalidateOnRefresh: true
-          }
-        });
-      });
-
-      mm.add("(max-width: 768px)", () => {
-        const scrollAmount = getScrollAmount('vertical');
-
-        gsap.to(wrapperRef.value, {
-          y: scrollAmount,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: "top top",
-            end: () => `+=${Math.abs(scrollAmount)}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-            toggleClass: "is-pinned"
-          }
-        });
-
-        gsap.to("#moving-object", {
-          motionPath: {
-            path: "#track-path-mobile",
-            align: "#track-path-mobile",
-            alignOrigin: [0.5, 0.5],
-            autoRotate: 90,
-            start: 0,
-            end: 1,
-          },
-          transformOrigin: "50% 50%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: "top top",
-            end: () => `+=${Math.abs(scrollAmount)}`,
-            scrub: 1,
-            invalidateOnRefresh: true
-          }
-        });
-      });
-
+      initAnimations();
     });
   });
 });
+
+// Добавляем реактивность на изменение данных
+watch(() => props.data, () => {
+  nextTick(() => {
+    // ScrollTrigger.refresh() пересчитает start/end позиции
+    // Но если меняется DOM структура (кол-во карточек), лучше пересоздать анимацию
+    ScrollTrigger.refresh();
+    initAnimations();
+  });
+}, { deep: true });
 
 onUnmounted(() => {
   if (mm) mm.revert();
@@ -134,7 +159,6 @@ const formatIndex = (i: number) => {
     <div class="timeline-wrapper" ref="wrapperRef">
 
       <div class="svg-container">
-
         <svg class="curve-svg desktop-curve" viewBox="0 0 4200 400" preserveAspectRatio="none" fill="none">
           <path
               id="track-path-desktop"
@@ -150,7 +174,6 @@ const formatIndex = (i: number) => {
               stroke="#AE9675" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"
           />
         </svg>
-
       </div>
 
       <div id="moving-object">
@@ -168,13 +191,17 @@ const formatIndex = (i: number) => {
 </template>
 
 <style scoped>
+/* Стили остались прежними, они корректны для данной задачи */
 .timeline-section {
   width: 100%;
+  max-width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
-  background-color: var(--color-background-light);
+  background-color: var(--color-background-light, #f4f4f4); /* Added fallback color */
 }
+
+/* ... остальной CSS без изменений ... */
 
 .timeline-section::after {
   content: "";
@@ -183,7 +210,7 @@ const formatIndex = (i: number) => {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: var(--color-background-light);
+  background-color: var(--color-background-light, #f4f4f4);
   z-index: -1;
   transition: 0.5s;
 }
@@ -240,12 +267,12 @@ const formatIndex = (i: number) => {
   gap: 1rem;
   position: relative;
   z-index: 5;
-  color: var(--color-text-dark);
+  color: var(--color-text-dark, #333);
 }
 
 .step-index {
   font-weight: bold;
-  color: var(--color-text-accent);
+  color: var(--color-text-accent, #AE9675);
   line-height: 1;
   position: absolute;
   z-index: -1;

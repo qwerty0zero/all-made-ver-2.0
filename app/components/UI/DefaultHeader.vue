@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { inject, ref, onMounted, onUnmounted } from 'vue';
+import { ref, inject, onMounted, onUnmounted } from 'vue';
+import { useI18n } from '#imports'
+const { $t } = useI18n()
 
-const headerData = inject<any>('headerData');
 const isMenuOpen = ref(false);
 const isScrolled = ref(false);
 
@@ -26,7 +27,9 @@ onUnmounted(() => {
   <header>
     <div class="title_holder">
       <img src="/favicon.svg" alt="logo">
-      <h1>{{ headerData.title }}</h1>
+      <i18n-link to="/">
+        <h1>{{ $t('header.title') }}</h1>
+      </i18n-link>
       <div class="curve">
         <div class="square"></div>
       </div>
@@ -37,8 +40,11 @@ onUnmounted(() => {
 
     <nav :class="{ Active: isScrolled }">
       <ul class="button-list desktop-only">
-        <li v-for="(el, index) in headerData.buttons" :key="index">
-          <a :href="el.link" class="button-link">{{ el.text }}</a>
+        <li v-for="(el, index) in $t('header.buttons')" :key="index">
+          <i18n-link v-if="el.type === 'page'" :to="el.link" class="button-link">
+            {{ el.text }}
+          </i18n-link>
+          <a v-else :href="el.link" class="button-link">{{ el.text }}</a>
         </li>
       </ul>
 
@@ -50,8 +56,11 @@ onUnmounted(() => {
 
       <Transition name="mobile-menu">
         <ul v-if="isMenuOpen" class="mobile-menu-list">
-          <li v-for="(el, index) in headerData.buttons" :key="index">
-            <a :href="el.link" class="button-link" @click="isMenuOpen = false">{{ el.text }}</a>
+          <li v-for="(el, index) in $t('header.buttons')" :key="index">
+            <i18n-link v-if="el.type === 'page'" :to="el.link" class="button-link">
+              {{ el.text }}
+            </i18n-link>
+            <a v-else :href="el.link" class="button-link">{{ el.text }}</a>
           </li>
         </ul>
       </Transition>
@@ -61,7 +70,6 @@ onUnmounted(() => {
 
 <style scoped>
 header {
-  max-width: 100%;
   width: 100%;
   position: absolute;
   top: 0;
@@ -71,6 +79,7 @@ header {
   padding: 2rem 4rem 0 0;
   z-index: 100;
   align-items: center;
+  padding-right: var(--scrollbar-width, 0px);
 }
 
 nav {

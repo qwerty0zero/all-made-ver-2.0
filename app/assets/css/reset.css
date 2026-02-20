@@ -33,6 +33,10 @@ button,
 textarea,
 select {
     font: inherit;
+    outline: none;
+    border: none;
+    text-transform: none;
+    text-align: unset;
 }
 
 a {

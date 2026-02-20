@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, nextTick, watch } from 'vue';
+
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,6 +11,11 @@ const props = defineProps({
   data: {
     type: Object,
     default: () => ({})
+  },
+  type: {
+    type: String,
+    required: false,
+    default: ''
   }
 });
 
@@ -86,10 +92,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="textContent">
+  <div class="textContent" :class="type">
     <h2 v-if="props.data.headline">{{ props.data.headline }}</h2>
-    <p v-if="props.data.bold_text" ref="boldTextRef" class="bold_text">
+    <p v-if="props.data.bold_text && type!='secondary'" ref="boldTextRef" class="bold_text">
       {{ props.data.bold_text }}
+    </p>
+    <p v-else  class="bold_text">
+      {{ props.data.bold_text }}
+
     </p>
     <div class="mask-container" v-if="typeof props.data.secondary_text === 'string'">
       <p class="secondary_text one_time_animation cubic_fade"
@@ -130,6 +140,7 @@ onUnmounted(() => {
   color: inherit;
   line-height: 1.1;
 }
+
 h2{
   text-transform: uppercase;
 }
