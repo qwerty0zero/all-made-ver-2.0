@@ -1,0 +1,176 @@
+{
+  "header": {
+    "title": "ALL MADE",
+    "buttons":
+       [
+        {
+          "text": "MAIN",
+          "link": "#main",
+          "type": "anchor"
+        },
+        {
+          "text": "ABOUT US",
+          "link": "/about_us",
+          "type": "page"
+        },
+        {
+          "text": "SERVICE",
+          "link": "#services",
+          "type": "anchor"
+        },
+        {
+          "text": "OUR WORKS",
+          "link": "/projects",
+          "type": "page"
+        },
+        {
+          "text": "CONTACTS",
+          "link": "#contact",
+          "type": "anchor"
+        }
+      ]
+
+  },
+  "footer": {
+    "links": [
+      {
+        "text": "facebook",
+        "link": "/"
+      },
+      {
+        "text": "instagram",
+        "link": "/about"
+      }
+    ],
+    "mail": "all.made.poczta@gmail.com",
+    "tel": "+48 575 169 238"
+  },
+  "page":{
+    "main": {
+      "headline": "Kompleksowa realizacja projektów meblowych",
+      "button": {
+        "title": "kontakt",
+        "link": "#contact"
+      }
+    },
+    "about_us": {
+      "headline": "ABOUT US",
+      "bold_text": "Dlaczego nazywamy się All Made ? Odpowiedz na to pytanie bardzo prosta - All Made w tłumaczeniu z angielskiego dosłownie brzmi jako \"Wszystko jest zrobione\". Właśnie to hasło jest naszą misją i końcowym celem naszych działań",
+      "secondary_text": " Firma All Made składa się z ekipy specjalistów w branży mebli, stolarstwa i montażu mebli wszystkich rodzajów. Nasz zespół składa się z fachowców z wieloletnim doświadczeniem pracy w branży meble na wymiar. Nasi specjaliści potrafią wykonać projekt  meblowy wszystkich rodzajów skomplikowaności oraz różnego rodzaju materiałów.",
+      "card": ["KOMPLEKSOWE REALIZACJE", "DOŚWIADCZENIE I JAKOŚĆ", "INDYWIDUALNE PROJEKTY"]
+    },
+    "steps": [
+      {
+        "title": "Заявка клиента",
+        "description": "Получаем запрос и уточняем детали."
+      },
+      {
+        "title": "Замер помещения",
+        "description": "Приезжаем и выполняем точные замеры."
+      },
+      {
+        "title": "Дизайн-проект",
+        "description": "Создаём визуализацию и согласуем решения."
+      },
+      {
+        "title": "Производство мебели",
+        "description": "Изготавливаем по согласованным размерам."
+      },
+      {
+        "title": "Доставка заказа",
+        "description": "Аккуратно привозим готовые изделия."
+      },
+      {
+        "title": "Сборка и монтаж",
+        "description": "Устанавливаем мебель на месте."
+      },
+      {
+        "title": "Проверка качества",
+        "description": "Убеждаемся, что всё работает идеально."
+      }
+    ],
+    "about_us_2": {
+      "headline": "ABOUT US",
+      "bold_text": "My dokonujemy opracowanie i realizację różnych skomplikowalności projektów meblowych. Kuchnie, szafy, garderoby, zabudowy RTV, osobne wolnostojące wyroby meblowe. ",
+      "secondary_text": [
+        "Czym my się wyróżniamy? Przede Wszystkim naszym podejściem do sprawy. Nasza cel spełnić oczekiwania klienta. Dlatego my stale się rozwijamy, pilnujemy trendy, ulepszamy naszą jakość   A także my działamy nie tylko w zakresie kompleksowej realizacji, my również możemy świadczyć każdą naszą usługę osobnie. ",
+        "Potrzebuje Państwo pomiar pomieszczenia ? - Jak najbardziej. A może montaż różnej skomplikowalności ? Bierzemy się za to ! Zgłoś do nas czego potrzebowałby, a my ci wycenimy to i podamy terminy     "
+      ]
+    },
+    "services": {
+      "headline": "services",
+      "bold_text": "Szukamy optymalne i kompromisowe rozwiązania dla naszych klientów. My znamy się na meblach i wszystkich powiązanych z nimi tematami",
+      "secondary_text": "My: mierzymy, opracowujemy,szukamy rozwiązania, uzgadniamy, doradzamy,  projektujemy, produkujemy,montujemy, podłączamy. I to wszystko my robimy z pasją do naszej sprawy i stolarstwa.",
+      "card": [
+        {
+          "headline": "Gwarancja",
+          "secondary_text": "Zasada pracy All Made opiera się bezpośrednio na staranności i precyzyjności na każdym etapie wykonania projektu. Naszą podstawową zasadą jest zapewnienie długotrwałej niezawodności i jakości mebli. Nawet po zakończeniu realizacji projektu zobowiązujemy się do natychmiastowej reakcji odnośnie jakichkolwiek usterek i poprawek. Nasza gwarancja zapewnia bezpłatną i wysokiej jakości eliminację wszelkich nieporozumień, tak aby Państwa meble w pełni spełniły oczekiwania."
+        },
+        {
+          "headline": "Czas realizacji ",
+          "secondary_text": "Cenimy czas naszego klienta. Zespół All Made pracuje profesjonalnie i sprawnie, aby wykonywać projekty jak można szybciej. Naszą podstawową zasadą jest przekazanie klientowi informacje odnośnie przebiegu opracowania i wykonania projektów. Tak, zawsze mogą wyniknąć różne sytuacje, ale gdy klient jest informowany na bieżąco, też dużo się zmienia. Ma szanujemy czas naszego klienta jak również i swój. "
+        },
+        {
+          "headline": "Narzędzia",
+          "secondary_text": "Techniczna strona naszej działalności jest ukompletowania sprzętem specjalnie dobranego do wykonania i montażu każdego konkretnego projektu. Zapewnia to dokładność, niezawodność i bezpieczeństwo podczas montażu mebli o dowolnej złożoności. Nasi rzemieślnicy dysponują szerokim zestawem narzędzi, które obejmuje narzędzia z możliwością precyzyjnego cięcia, a także do obróbki skomplikowanych materiałów."
+        }
+      ]
+    },
+    "faq": {
+      "headline": "faq",
+      "item": [
+        {
+          "headline": "B2B",
+          "description": "Firma All Made może świadczyć usługi stolarsko - montażowe jako podwykonawca"
+        },
+        {
+          "headline": "Lokalizacja świadczenia usług",
+          "description": "Firma lokalizuje się w okolicach Poznania. Wyjazdy możemy realizować na terenie całej Polski, jak i krajów wchodzących w skład Unii Europejskiej."
+        },
+        {
+          "headline": "Cennik",
+          "description": "Każdy projekt wyceniamy indywidualnie. Montaż mebli indywidualnych jako podwykonawca od 12% do 30% od wartości wyrobów z warunkiem obowiązkowego wstępnego zapoznania z projektem w celu oceny skomplikowaności jego instalacji. Cena obejmuje koszt dostawy wyrobów meblowych w razie takiej potrzeby. Istnieje również usługa wykonywania drobnych prac meblowych - tutaj ceny są do negocjacji, w zależności od rodzaju pracy i czasu spędzonego na nie"
+        },
+        {
+          "headline": "Nasza wiedza i doświadczenie",
+          "description": "- Kilku lat bezpośrednio prac stolarskich  \n- Projektowanie wyrobów meblowych \n- Dokonanie pomiarów pomieszczeń\n- Produkcja i montaże mebli o różnej skomplikowalności w branży indywidualnych wyrobów klasy średniej, średniej plus i premium\n- Montaże stoisk targowych. W Polsce oraz na terenie krajów UE\n"
+        },
+        {
+          "headline": "Nasze zalety",
+          "description": "- Przede wszystkim stały kontakt z klientem i informowanie o przebiegu wykonania projektu \n- Nie boimy się szukać i proponować niestandardowe rozwiązanie w przypadku skomplikowanych pomieszczeń i węzłów  \n- Kontrola jakości produkcji każdego elementu, korpusu  \n- Ochrona powierzchni podłogowych i ściennych przed montażem \n"
+        }
+      ]
+    },
+    "projects": {
+      "headline": "OUR WORKS",
+      "bold_text": "We are looking for optimal and compromise solutions for our clients",
+      "secondary_text": "We: measure, develop, search for solutions, coordinate, advise, design, produce, install, connect. And we do all this with passion for our work and carpentry.",
+      "card": [
+        {
+          "headline": "Project 1",
+          "secondary_text": "Description of project 1",
+          "link": ""
+        },
+        {
+          "headline": "Project 2",
+          "secondary_text": "Description of project 2",
+          "link": ""
+        },
+        {
+          "headline": "Project 3",
+          "secondary_text": "Description of project 3",
+          "link": ""
+        },
+        {
+          "headline": "Project 4",
+          "secondary_text": "Description of project 4",
+          "link": ""
+        }
+      ]
+    }
+  },
+  "nuxtSiteConfig": {
+    "name": "ALL MADE",
+    "description": "Comprehensive furniture project implementation"
+  }
+}

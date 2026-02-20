@@ -19,11 +19,8 @@ const props = defineProps({
           class="one_time_animation cubic_fade"
           v-observe-visibility
       >        {{ props.data.headline }}
-      </h2></div>
-
-
-
-
+      </h2>
+      </div>
         <div class="mask-container">
           <div class="button-mask-wrapper cubic_fade one_time_animation" v-if="props.data.button"
                v-observe-visibility
@@ -55,6 +52,7 @@ const props = defineProps({
 
 section {
   width: 100%;
+  max-width: 100%;
   height: 100dvh;
   position: relative;
   border: 2rem solid var(--color-background-light);

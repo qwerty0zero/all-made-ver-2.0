@@ -2,8 +2,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
     nitro: {
         prerender: {
-            routes: ['/rus', '/eng', 'pl'],
-
+            crawlLinks: true,
             failOnError: false,
         }
     },
@@ -23,7 +22,8 @@ export default defineNuxtConfig({
     css: [
         "@/assets/css/main.css"
     ],
-    modules: ["@nuxtjs/google-fonts"],
+
+    modules: ["@nuxtjs/google-fonts", 'nuxt-i18n-micro', '@nuxtjs/seo'],
 
     googleFonts: {
         families: {
@@ -32,5 +32,40 @@ export default defineNuxtConfig({
         display: "swap",
         preconnect: true,
         preload: true
-    }
+    },
+
+    i18n: {
+        translationDir: 'locales',
+        meta: true,
+        defaultLocale: 'ru',
+        strategy: 'prefix',
+        baseUrl: 'http://localhost:3000',
+        locales: [
+            {
+                code: 'pl',
+                language: 'pl-PL',
+                file: 'pl.json',
+                name: 'Polski'
+            },
+            {
+                code: 'en',
+                language: 'en-US',
+                file: 'en.json',
+                name: 'English'
+            },
+            {
+                code: 'ru',
+                language: 'ru-RU',
+                file: 'ru.json',
+                name: 'Русский'
+            }
+        ],
+
+
+        detectBrowserLanguage: {
+            useCookie: true,
+            cookieKey: 'i18n_redirected',
+            redirectOn: 'root',
+        }
+    },
 })

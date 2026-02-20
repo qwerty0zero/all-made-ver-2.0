@@ -1,7 +1,6 @@
 <script setup lang="ts">
-const headerData = inject('headerData');
-const footerData = inject('footerData');
-
+import { useI18n } from '#imports'
+const { $t } = useI18n()
 </script>
 
 <template>
@@ -12,22 +11,25 @@ const footerData = inject('footerData');
 
     <nav class="menu">
       <ul>
-        <li v-for="el in headerData.buttons">
-          <a :href="el.link">{{ el.text }}</a>
+        <li v-for="(el, index) in $t('header.buttons')" :key="index">
+          <i18n-link v-if="el.type === 'page'" :to="el.link">
+            {{ el.text }}
+          </i18n-link>
+          <a v-else :href="el.link">{{ el.text }}</a>
         </li>
       </ul>
     </nav>
     <ul class="social">
-      <li v-for="el in footerData.links">
-        <a :href="el.link" target="_blank">{{el.text}}</a>
+      <li v-for="(el, index) in $t('footer.links')" :key="index">
+        <a :href="el.link" target="_blank">{{ el.text }}</a>
       </li>
     </ul>
     <ul>
       <li>
-        <a :href="'mailto:'+ footerData.mail">{{footerData.mail}}</a>
+        <a :href="'mailto:'+ $t('footer.mail')">{{ $t('footer.mail') }}</a>
       </li>
       <li>
-        <a :href="'tel:'+footerData.tel">{{footerData.tel}}</a>
+        <a :href="'tel:'+ $t('footer.tel')">{{ $t('footer.tel') }}</a>
       </li>
     </ul>
   </div>
@@ -53,7 +55,7 @@ footer {
   position: relative;
   border: 2rem solid var(--color-background-light);
   border-radius: 4rem;
-
+  margin-top: auto;
   padding:  10rem 6rem 0 6rem;
 
 }
@@ -80,7 +82,10 @@ h4{
 }
 a{
   font-weight: bold;
+  padding: 1rem ;
+
 }
+
 @media screen and (max-width: 1200px) {
   footer{
     font-size: 1.5rem;

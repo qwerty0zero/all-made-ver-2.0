@@ -12,7 +12,6 @@ const altText = computed(() => props.alt || 'image')
 
 <template>
   <picture class="default-img">
-    <!-- Desktop -->
 
     <source
         media="(min-width: 768px)"
@@ -30,7 +29,6 @@ const altText = computed(() => props.alt || 'image')
         :srcset="`/images/${src}-desktop.png`"
     />
 
-    <!-- Mobile -->
     <source
         media="(max-width: 767px)"
         type="image/webp"
