@@ -1,0 +1,83 @@
+{
+  "header": {
+    "title": "ALL MADE",
+    "buttons":
+    [
+      {
+        "text": "MAIN",
+        "link": "/",
+        "type": "page"
+      },
+      {
+        "text": "ABOUT US",
+        "link": "/about_us",
+        "type": "page"
+      },
+      {
+        "text": "SERVICE",
+        "link": "/#services",
+        "type": "page"
+      },
+      {
+        "text": "CONTACTS",
+        "link": "#contact",
+        "type": "anchor"
+      }
+    ]
+
+  },
+  "footer": {
+    "links": [
+      {
+        "text": "facebook",
+        "link": "/"
+      },
+      {
+        "text": "instagram",
+        "link": "/about"
+      }
+    ],
+    "mail": "all.made.poczta@gmail.com",
+    "tel": "+48 575 169 238"
+  },
+  "page": {
+    "main": {
+      "headline": "OUR WORKS",
+      "bold_text": "We are looking for optimal and compromise solutions for our clients",
+      "secondary_text": "We: measure, develop, search for solutions, coordinate, advise, design, produce, install, connect. And we do all this with passion for our work and carpentry."
+    },
+    "card": [
+      {
+        "headline": "Project 1",
+        "secondary_text": "Description of project 1",
+        "description": "fgrmop[em[[gopremop[gmop[erm[grem",
+        "link": ""
+      },
+      {
+        "headline": "Project 2",
+        "secondary_text": "Description of project 2",
+        "description": "fgrmop[em[[gopremop[gmop[erm[grem",
+
+        "link": ""
+      },
+      {
+        "headline": "Project 3",
+        "secondary_text": "Description of project 3",
+        "description": "fgrmop[em[[gopremop[gmop[erm[grem",
+
+        "link": ""
+      },
+      {
+        "headline": "Project 4",
+        "secondary_text": "Description of project 4",
+        "description": "fgrmop[em[[gopremop[gmop[erm[grem",
+
+        "link": ""
+      }
+    ]
+  },
+  "nuxtSiteConfig": {
+    "name": "ALL MADE Projects",
+    "description": "Comprehensive furniture project implementation"
+  }
+}
