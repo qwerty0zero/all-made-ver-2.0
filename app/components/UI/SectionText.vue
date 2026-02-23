@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, nextTick, watch } from 'vue';
-
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(SplitText, ScrollTrigger);
+import { ref } from 'vue';
+import { useTextReveal } from '~/composables/useTextReveal';
 
 const props = defineProps({
   data: {
@@ -20,75 +15,8 @@ const props = defineProps({
 });
 
 const boldTextRef = ref<HTMLElement | null>(null);
-let splitInstance: SplitText | null = null;
-let animContext: gsap.Context | null = null;
-let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
-let lastWidth = 0;
 
-const animateText = () => {
-  if (animContext) animContext.revert();
-  if (splitInstance) splitInstance.revert();
-  if (!boldTextRef.value) return;
-
-  animContext = gsap.context(() => {
-    splitInstance = new SplitText(boldTextRef.value, {
-      type: "lines, words, chars",
-      linesClass: "line-wrapper",
-    });
-
-    gsap.fromTo(splitInstance.chars,
-        {
-          opacity: 0.1
-        },
-        {
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-          ease: "none",
-
-          scrollTrigger: {
-            trigger: boldTextRef.value,
-            start: "top center+=20%",
-            end: "bottom center+=10%",
-            scrub: 0.5,
-          }
-        }
-    );
-  }, boldTextRef.value);
-
-  ScrollTrigger.refresh();
-};
-
-const handleResize = () => {
-  const newWidth = window.innerWidth;
-  if (newWidth === lastWidth) return;
-  lastWidth = newWidth;
-  if (resizeTimeout) clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    animateText();
-  }, 200);
-};
-
-onMounted(() => {
-  nextTick(() => {
-    lastWidth = window.innerWidth;
-    setTimeout(() => {
-      if (props.data.bold_text) animateText();
-    }, 100);
-
-    window.addEventListener('resize', handleResize);
-  });
-});
-
-watch(() => props.data.bold_text, () => {
-  nextTick(() => animateText());
-});
-
-onUnmounted(() => {
-  if (animContext) animContext.revert();
-  if (resizeTimeout) clearTimeout(resizeTimeout);
-  window.removeEventListener('resize', handleResize);
-});
+useTextReveal(boldTextRef, () => props.data.bold_text);
 </script>
 
 <template>

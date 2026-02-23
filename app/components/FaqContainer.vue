@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
+import { computed } from 'vue';
 import FaqItem from "~/components/UI/FaqItem.vue";
+import { useCarousel } from "~/composables/useCarousel";
 
 interface FaqData {
   headline: string;
@@ -11,48 +12,10 @@ const props = defineProps<{
   data: FaqData[];
 }>();
 
-const activeIndex = ref(0);
-let timer: ReturnType<typeof setInterval> | null = null;
-const TIMER_DURATION = 10000;
+const { activeIndex, setActive } = useCarousel(() => props.data || [], 10000);
 
 const currentDescription = computed(() => {
   return props.data[activeIndex.value]?.description || '';
-});
-
-const nextSlide = () => {
-  if (props.data.length > 0) {
-    activeIndex.value = (activeIndex.value + 1) % props.data.length;
-  }
-};
-
-const startTimer = () => {
-  stopTimer();
-  timer = setInterval(nextSlide, TIMER_DURATION);
-};
-
-const stopTimer = () => {
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-  }
-};
-
-const setActive = async (index: number) => {
-  if (activeIndex.value === index) {
-    activeIndex.value = -1;
-    await nextTick();
-  }
-
-  activeIndex.value = index;
-  startTimer();
-};
-
-onMounted(() => {
-  startTimer();
-});
-
-onUnmounted(() => {
-  stopTimer();
 });
 </script>
 
